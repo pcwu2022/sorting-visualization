@@ -3,7 +3,8 @@
 import React, { useEffect, useState } from 'react';
 
 import {
-    insertionSortSnapshot
+    insertionSortSnapshot,
+    bubbleSortSnapshot
 } from './algorithms';
 
 const ChooseButton = (props: {
@@ -76,12 +77,17 @@ const page = () => {
     }
     return (
         <div>
-            <div className='p-10'>
+            <div className='p-10 pb-0'>
                 <ChooseButton
                     onClick={() => {
                         sortAnimation(insertionSortSnapshot)
                     }}
                 >Insertion Sort</ChooseButton>
+                <ChooseButton
+                    onClick={() => {
+                        sortAnimation(bubbleSortSnapshot)
+                    }}
+                >Bubble Sort</ChooseButton>
             </div>
             <div className='p-10'>
                 {
