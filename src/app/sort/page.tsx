@@ -4,7 +4,11 @@ import React, { useEffect, useState } from 'react';
 
 import {
     insertionSortSnapshot,
-    bubbleSortSnapshot
+    bubbleSortSnapshot,
+    selectionSortSnapshot,
+    heapSortSnapshot,
+    mergeSortSnapshot,
+    quickSortSnapshot
 } from './algorithms';
 
 const ChooseButton = (props: {
@@ -64,6 +68,7 @@ const page = () => {
 
     const sortAnimation = (sortingAlgorithm: (inputArray: Array<number>) => Array<Array<number>>) => {
         snapshot = sortingAlgorithm(arr);
+        i = 0;
         let itv = setInterval(() => {
             if (snapshot.length === 0){
                 return;
@@ -73,21 +78,52 @@ const page = () => {
             if (i === snapshot.length){
                 clearInterval(itv);
             }
-        }, 100);
+        }, 50);
     }
     return (
         <div>
             <div className='p-10 pb-0'>
                 <ChooseButton
                     onClick={() => {
+                        refresh();
+                    }}
+                >Randomize</ChooseButton>
+                <ChooseButton
+                    onClick={() => {
+                        refresh();
                         sortAnimation(insertionSortSnapshot)
                     }}
                 >Insertion Sort</ChooseButton>
                 <ChooseButton
                     onClick={() => {
+                        refresh();
                         sortAnimation(bubbleSortSnapshot)
                     }}
                 >Bubble Sort</ChooseButton>
+                <ChooseButton
+                    onClick={() => {
+                        refresh();
+                        sortAnimation(selectionSortSnapshot)
+                    }}
+                >Selection Sort</ChooseButton>
+                <ChooseButton
+                    onClick={() => {
+                        refresh();
+                        sortAnimation(heapSortSnapshot)
+                    }}
+                >Heap Sort</ChooseButton>
+                <ChooseButton
+                    onClick={() => {
+                        refresh();
+                        sortAnimation(mergeSortSnapshot)
+                    }}
+                >Merge Sort</ChooseButton>
+                <ChooseButton
+                    onClick={() => {
+                        refresh();
+                        sortAnimation(quickSortSnapshot)
+                    }}
+                >Quick Sort</ChooseButton>
             </div>
             <div className='p-10'>
                 {
