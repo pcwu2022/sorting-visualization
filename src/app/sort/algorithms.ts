@@ -1,5 +1,3 @@
-import { AssertsThisTypePredicate } from "typescript";
-
 type Arr = Array<number>;
 type Snapshot = Array<Array<number>>;
 
@@ -166,12 +164,65 @@ const quickSortSnapshot = (array: Arr): Snapshot => {
     return snapshot;
 }
 
+const stalinSortSnapshot = (array: Arr): Snapshot => {
+    let snapshot: Snapshot = [];
+    for (let i = 1; i < array.length; i++){
+        if (array[i] < array[i-1]){
+            array.splice(i, 1);
+            snapshot.push([...array]);
+            i--;
+        }
+    }
+    return snapshot;
+}
+
+const stableStalinSortSnapshot = (array: Arr): Snapshot => {
+    let snapshot: Snapshot = [];
+    let sorted = false;
+    while (!sorted){
+        sorted = true;
+        for (let i = 1; i < array.length; i++){
+            if (array[i] < array[i-1]){
+                let insert = array.splice(i, 1)[0];
+                array.unshift(insert);
+                snapshot.push([...array]);
+                i--;
+                sorted = false;
+            }
+        }
+    }
+    return snapshot;
+}
+
+const bogoSort = (array: Arr): Snapshot => {
+    let snapshot: Snapshot = [];
+    let sorted = false;
+    while (!sorted){
+        for (let i = 1; i < array.length; i++){
+            if (array[i] < array[i-1]){
+                sorted = false;
+                break;
+            }
+        }
+        for (let i = 0; i < array.length; i++){
+            let randomA = Math.floor(Math.random()*array.length);
+            let randomB = Math.floor(Math.random()*array.length);
+            let temp = array[randomA];
+            array[randomA] = array[randomB];
+            array[randomB] = temp;
+        }
+    }
+    return snapshot;
+}
+
 export {
     insertionSortSnapshot,
     bubbleSortSnapshot,
     selectionSortSnapshot,
     heapSortSnapshot,
     mergeSortSnapshot,
-    quickSortSnapshot
+    quickSortSnapshot,
+    stalinSortSnapshot,
+    stableStalinSortSnapshot
 }
 

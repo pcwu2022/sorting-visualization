@@ -8,7 +8,9 @@ import {
     selectionSortSnapshot,
     heapSortSnapshot,
     mergeSortSnapshot,
-    quickSortSnapshot
+    quickSortSnapshot,
+    stalinSortSnapshot,
+    stableStalinSortSnapshot
 } from './algorithms';
 
 const ChooseButton = (props: {
@@ -124,6 +126,18 @@ const page = () => {
                         sortAnimation(quickSortSnapshot)
                     }}
                 >Quick Sort</ChooseButton>
+                <ChooseButton
+                    onClick={() => {
+                        refresh();
+                        sortAnimation(stalinSortSnapshot)
+                    }}
+                >Stalin Sort</ChooseButton>
+                <ChooseButton
+                    onClick={() => {
+                        refresh();
+                        sortAnimation(stableStalinSortSnapshot)
+                    }}
+                >Stable Stalin Sort</ChooseButton>
             </div>
             <div className='p-10'>
                 {
